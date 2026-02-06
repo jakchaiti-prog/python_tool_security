@@ -1,0 +1,16 @@
+{
+    "owner": "Jakchai",
+    "expires_at": "2026-02-14 00:21:46",
+    "key_data": {
+        "alg": "RS256",
+        "kty": "RSA",
+        "n": "uxUQcCbxn8UYq9mqnl8L99MRfAOn3qbtrN-AjevSh51RIBpIh7-AvwbyXfVHnJiEr3gU7hkKu-RtxJY8tDb8acyt9Pfa4rhuOiU-CeR1a1VGQ-Yy-U0Lbed3abxb5ZLImF4v53hcZ1Xg7mjI-_FO1M9O8wHuoqyd0xb2YjrtvcazZIVW0w-BepgheAgLgxyQtrfHsXvP8dZRJ7InHKaGWt1M928BVqUTUsvGY4xiAJp4r0I5qlbEJtZ2IrilcIJ_fLDz81H7ai-Btthb9g0o8VFxxkwx8Nb-JFe40jLASwACcoJBAUvkWyY93LuSmkAF7jrkQFh38Oy-f0aNutR6fQ",
+        "e": "AQAB",
+        "d": "ATUPAgOaUmXe9XhGM9dDWEImLibxjcwFeMoIxhcEE4h2G3nX8c-lo3XxGUlJ1kPyB-uDimV3zoPC7-kT819vIblRU7qdZhJQcchyPfWZtWDblHjB555x6QUR80kkzavfZq5QQFM5mMLIMg7-jF5VBtC0qXhKeNsaJKB_ZAhjJt2ZznT1jhU3sfu4nhPJxPerWXe0mYvH-zPvW2pO_RJ-enlEnxlyRooP6LxFsFxCK7TeStQMYCW94AbAEtNTxKRpEfqfzCpFOGdC-qZhXmYAKnsFUKph2JJc7Wg2yVbBSEiC4dXJtR4oFTQp2oFsvTksH7z_Bjv_kF49oEa-NEXNwQ",
+        "p": "7rWnslTaLtu1UR2a26GEDY0fNMrAet3ATYcM86iuFDtz7bQK5p2vADH7pk0RluYAhzmVuKjKNKQcBVaeBfc5IcFe2Va-xkHX1bxfE3RkQmPxC4Ugu0Ko5YNX-_w82GLtADUyFY1AOnVoL7tEe0RnZSfESzc3i1D9PR8012NbiT0",
+        "q": "yKIYGWUsuvedsiilRZ5xOhaLq4RJt6eIO2hZ5ZcW7vBmikVRNqBXnOkdWXZngVOUJJdQrKwgv9_4-vdX9LDrHDjoaLl9CA6Tq203cX_fVyc3dlWHxJfB8jq3FTsf8-OO8uWXETq5KxEGaB7GSlhFRkiVtrVHLnvV4jdW-5dHSkE",
+        "dp": "eyX4F8YysU3joq9VPs16pMsTOFcJKdnQ5a4wfludQw7Q5eamYQckS0N-AfNsiZ6q0xhgJ13cw3-OfSqMZ6N9M-7gkdtwnDNHuBpwKkc3mhCZQEoz8qeXHqC9-V_NvAx9HEhVSE0Qv5fmYgmIcNd_R-5WFD-uRg9INgotZpj5ljk",
+        "dq": "dq4j0Une9s4ok02lzhPWaIUTo6bCMIhCdtnYa44_e6HrFhnA265nhSMEQHpg6ch11ltH1oyPZtDnKBWOCuloei5TlDc89bohsgMOC-6XP6esECyx_iHDETWYPU_XK97NHXOgNAnnpMkSYB7sLugeOmAPZ5-99oo8T-9qXbLz8cE",
+        "qi": "ZXM30mgij-2bYdA9uUDYmZqDJbxPL4We9Wiwpy-gIIq4rzP6FHdcb92KRAWh1Igi_eahp1f_7y5gl-ZPBg5UoAwMwQwTU5I4sGXk4tE324a6kNsAOzOQTVzOlUL6s5_TA1Z0f6ibvRJwEtjt9LfpXWtxAVepYi324CsqKV3IWNs"
+    }
+}

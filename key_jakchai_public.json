@@ -1,0 +1,10 @@
+{
+    "owner": "Jakchai",
+    "expires_at": "2026-02-14 00:21:46",
+    "key_data": {
+        "alg": "RS256",
+        "kty": "RSA",
+        "n": "uxUQcCbxn8UYq9mqnl8L99MRfAOn3qbtrN-AjevSh51RIBpIh7-AvwbyXfVHnJiEr3gU7hkKu-RtxJY8tDb8acyt9Pfa4rhuOiU-CeR1a1VGQ-Yy-U0Lbed3abxb5ZLImF4v53hcZ1Xg7mjI-_FO1M9O8wHuoqyd0xb2YjrtvcazZIVW0w-BepgheAgLgxyQtrfHsXvP8dZRJ7InHKaGWt1M928BVqUTUsvGY4xiAJp4r0I5qlbEJtZ2IrilcIJ_fLDz81H7ai-Btthb9g0o8VFxxkwx8Nb-JFe40jLASwACcoJBAUvkWyY93LuSmkAF7jrkQFh38Oy-f0aNutR6fQ",
+        "e": "AQAB"
+    }
+}
