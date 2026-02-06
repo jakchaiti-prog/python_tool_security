@@ -2,36 +2,33 @@ import hashlib
 import os
 from tqdm import tqdm
 
-def calculate_md5_with_progress(file_path):
-    # 1. เตรียมตัวคำนวณ Hash
+def verify_vivado_file(file_path, expected_md5):
+    # ตรวจสอบว่าไฟล์มีอยู่จริงไหมก่อนเริ่ม
+    if not os.path.exists(file_path):
+        print(f"❌ ไม่พบไฟล์: {file_path}")
+        return
+
+    file_size = os.path.getsize(file_path)
     md5_hash = hashlib.md5()
     
-    # 2. หาขนาดไฟล์ทั้งหมดเพื่อเอาไปทำ Progress Bar
-    file_size = os.path.getsize(file_path)
+    print(f"กำลังตรวจสอบไฟล์ขนาด {file_size / (1024**3):.2f} GB...")
     
-    # 3. กำหนดขนาดการอ่านทีละก้อน (64KB เหมือนที่คุณจักร์ชัยเขียนไว้)
-    chunk_size = 65536
-    
-    print(f"กำลังตรวจสอบไฟล์: {os.path.basename(file_path)}")
-    
-    # 4. ใช้ tqdm สร้าง Progress Bar
-    # unit='B' คือบอกว่าเป็น Byte, unit_scale=True จะช่วยปรับเป็น MB, GB ให้อัตโนมัติ
-    with tqdm(total=file_size, unit='B', unit_scale=True, desc="Calculating") as pbar:
+    # ใช้ tqdm ทำ Progress Bar สำหรับไฟล์ 107GB
+    with tqdm(total=file_size, unit='B', unit_scale=True, desc="Checking MD5") as pbar:
         with open(file_path, "rb") as f:
-            while (data := f.read(chunk_size)):
+            while (data := f.read(65536)): # แก้ไขช่องว่าง := แล้ว
                 md5_hash.update(data)
-                # อัปเดตแถบความคืบหน้าตามจำนวน Byte ที่อ่านได้จริง
                 pbar.update(len(data))
                 
-    return md5_hash.hexdigest()
+    actual_md5 = md5_hash.hexdigest()
+    
+    if actual_md5.lower() == expected_md5.lower():
+        print("\n✅ [Pass] ไฟล์สมบูรณ์ ตรงกับค่าในเว็บ Xilinx!")
+    else:
+        print("\n❌ [Fail] ค่า Hash ไม่ตรงกัน ไฟล์อาจจะเสีย")
 
-# --- วิธีใช้งาน ---
-file_to_check = r"ใส่ที่อยู่ไฟล์ของคุณจักร์ชัยตรงนี้.tar" # เปลี่ยนที่อยู่ไฟล์ด้วยนะครับ
-expected_val = "372c0b184e32001137424e395823de3c" # ค่า MD5 จากเว็บ Xilinx
+# ใส่ค่าที่คุณจักร์ชัยโหลดเสร็จมา
+vivado_path = r"C:\path\to\your\Xilinx_Unified_2024.1_SFD.tar.gz" 
+vivado_md5 = "372c0b184e32001137424e395823de3c" # ค่าสำหรับไฟล์ 107.11 GB
 
-actual_hash = calculate_md5_with_progress(file_to_check)
-
-if actual_hash.lower() == expected_val.lower():
-    print("\n✅ [Pass] ไฟล์ถูกต้องสมบูรณ์!")
-else:
-    print("\n❌ [Fail] ไฟล์ไม่ถูกต้อง! กรุณาเช็คการดาวน์โหลดอีกครั้ง")
+verify_vivado_file(vivado_path, vivado_md5)
