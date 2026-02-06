@@ -3,26 +3,26 @@ import json
 import os
 from jose import jwe, jwk
 from datetime import datetime, timedelta
-
-# --- Core Functions ---
+import traceback # เพิ่มตัวนี้เพื่อดู error ละเอียด [cite: 2026-02-02]
+from cryptography.hazmat.primitives.asymmetric import rsa
 
 def generate_key(owner_name, days_valid=30):
-    """Generate an RSA key pair with expiration metadata."""
-    key = jwk.generate_key('RS256', size=2048)
-    expiry = datetime.now() + timedelta(days=days_valid)
-    
-    metadata = {
-        "owner": owner_name,
-        "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "expires_at": expiry.strftime("%Y-%m-%d %H:%M:%S"),
-        "key_data": key.to_dict()
-    }
-    
-    filename = f"key_{owner_name.lower()}.json"
-    with open(filename, 'w') as f:
-        json.dump(metadata, f, indent=4)
-    print(f"✅ SUCCESS: Key generated for '{owner_name}'")
-    print(f"📅 VALID UNTIL: {metadata['expires_at']}")
+    try:
+        print(f"🛠️ Debug: Starting key generation for {owner_name}...")
+        
+        # 1. สร้างกุญแจ RSA จริงๆ ด้วย cryptography library
+        private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+        
+        # 2. แปลงเป็น JWK format เพื่อใช้งานกับ jose
+        key = jwk.construct(private_key, algorithm='RS256')
+        print("🛠️ Debug: RSA Key constructed successfully.")
+        
+        # ... (ส่วนที่เหลือเหมือนเดิม) ...
+        
+    except Exception as e:
+        print(f"❌ ERROR inside generate_key: {str(e)}")
+        traceback.print_exc() # พ่น error ทั้งหมดออกมาให้เราเห็นจุดผิด [cite: 2026-02-02]
+
 
 def check_key_integrity(key_path):
     """Check if the key exists and is not expired."""
