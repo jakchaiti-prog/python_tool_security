@@ -18,6 +18,38 @@ def generate_key(owner_name, days_valid=30):
         print("🛠️ Debug: RSA Key constructed successfully.")
         
         # ... (ส่วนที่เหลือเหมือนเดิม) ...
+        # 1. สร้างกุญแจ RSA [cite: 2026-02-02]
+        private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+        key = jwk.construct(private_key, algorithm='RS256')
+        
+        # 2. คำนวณวันหมดอายุ [cite: 2026-02-02]
+        expiry = datetime.now() + timedelta(days=days_valid)
+
+        filename = f"key_{owner_name.lower()}.json"
+        # ใช้ os.path.abspath เพื่อดูที่อยู่ไฟล์แบบเต็มๆ [cite: 2026-02-02]
+        full_path = os.path.abspath(filename) 
+        
+        metadata = {
+                    "owner": owner_name,
+                    "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "expires_at": expiry.strftime("%Y-%m-%d %H:%M:%S"),
+                    "key_data": key.to_dict()
+                }
+        
+        # 3. บันทึกลงไฟล์
+        filename = f"key_{owner_name.lower()}.json"
+        full_path = os.path.abspath(filename)
+        
+        with open(filename, 'w') as f:
+            json.dump(metadata, f, indent=4) # ตอนนี้จะมี metadata ให้ dump แล้วครับ
+            
+        print(f"✅ SUCCESS: Key saved to -> {full_path}")
+        
+    except Exception as e:
+        print(f"❌ ERROR inside generate_key: {str(e)}")
+        traceback.print_exc()
+            
+        print(f"✅ SUCCESS: Key saved to -> {full_path}") # แจ้งที่อยู่ไฟล์ชัดๆ        
         
     except Exception as e:
         print(f"❌ ERROR inside generate_key: {str(e)}")
